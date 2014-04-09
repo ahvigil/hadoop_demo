@@ -8,5 +8,5 @@ hdfs dfs -put input/* /user/cloudera/wordcount/input/
 
 hadoop jar hadoop_job.jar OrderedCount /user/cloudera/wordcount/input /user/cloudera/wordcount/output /user/cloudera/wordcount/output2
 
-rm results.txt
+rm -f results.txt
 hadoop fs -get /user/cloudera/wordcount/output2/part-00000 ./results.txt
