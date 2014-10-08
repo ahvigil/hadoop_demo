@@ -17,7 +17,7 @@ hdfs dfs -rm -f -r /user/cloudera/wordcount
 read -p "[Enter to Continue]"
 
 echo
-echo hdfs dfs -mkdir /user/cloudera/wordcount
+echo hdfs dfs -mkdir /user/cloudera/wordcount/input
 read -p "[Enter to run]"
 hdfs dfs -mkdir /user/cloudera/wordcount/input
 read -p "[Enter to Continue]"
@@ -36,7 +36,7 @@ read -p "[Enter to Continue]"
 
 echo
 rm -f results.txt
-echo hadoop fs -get /user/cloudera/wordcount/output2/part-00000 ./results.txt
+echo hdfs dfs -get /user/cloudera/wordcount/output2/part-00000 ./results.txt
 read -p "[Enter to run]"
-hadoop fs -get /user/cloudera/wordcount/output2/part-00000 ./results.txt
-read -p "Done! Results file is results.txt"
+hdfs dfs -get /user/cloudera/wordcount/output2/part-00000 ./results.txt
+echo "Done! Results file is results.txt"
