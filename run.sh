@@ -11,9 +11,15 @@ jar -cvf hadoop_job.jar *.class
 read -p "[Enter to Continue]"
 
 echo
-echo jar -cvf hadoop_job.jar *.class
+echo hdfs dfs -rm -f -r /user/cloudera/wordcount
 read -p "[Enter to run]"
-hdfs dfs -rm -f -r /user/cloudera/wordcount/*
+hdfs dfs -rm -f -r /user/cloudera/wordcount
+read -p "[Enter to Continue]"
+
+echo
+echo hdfs dfs -mkdir /user/cloudera/wordcount
+read -p "[Enter to run]"
+hdfs dfs -mkdir /user/cloudera/wordcount/input
 read -p "[Enter to Continue]"
 
 echo
