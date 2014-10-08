@@ -23,12 +23,6 @@ hdfs dfs -mkdir /user/cloudera/wordcount/input
 read -p "[Enter to Continue]"
 
 echo
-echo hdfs dfs -mkdir /user/cloudera/wordcount/input
-read -p "[Enter to run]"
-hdfs dfs -mkdir /user/cloudera/wordcount/input
-read -p "[Enter to Continue]"
-
-echo
 echo hdfs dfs -put input/* /user/cloudera/wordcount/input/
 read -p "[Enter to run]"
 hdfs dfs -put input/* /user/cloudera/wordcount/input/
