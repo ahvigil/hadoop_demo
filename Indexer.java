@@ -31,15 +31,13 @@ public class Indexer {
     }
   }
 
-  public static class Reduce extends MapReduceBase implements Reducer<Text, Text, Text, ArrayWritable> {
+  public static class Reduce extends MapReduceBase implements Reducer<Text, Text, Text, Text> {
 	  @Override
-    public void reduce(Text key, Iterator<Text> values, OutputCollector<Text, ArrayWritable> output, Reporter reporter) throws IOException {
-	  ArrayWritable postingList = new ArrayWritable(Text.class);
-	  ArrayList<Text> docs = new ArrayList<Text>();
+    public void reduce(Text key, Iterator<Text> values, OutputCollector<Text, Text> output, Reporter reporter) throws IOException {
+	  StringBuilder postingList = new StringBuilder();
       while (values.hasNext()) {
-        docs.add(values.next());
+        postingList.append(values.next().get() + " ");
       }
-	  postingList.set(docs.toArray(new Text[docs.size()]));
       output.collect(key, postingList);
     }
   }
@@ -49,10 +47,11 @@ public class Indexer {
     conf.setJobName("indexer");
 
     conf.setOutputKeyClass(Text.class);
-    conf.setOutputValueClass(ArrayWritable.class);
+    conf.setOutputValueClass(Text.class);
 	conf.setMapOutputValueClass(Text.class);
 
     conf.setMapperClass(Map.class);
+    conf.setCombinerClass(Reduce.class);
     conf.setReducerClass(Reduce.class);
 
     conf.setInputFormat(TextInputFormat.class);
