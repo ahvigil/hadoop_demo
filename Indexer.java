@@ -34,7 +34,7 @@ public class Indexer {
     public void reduce(Text key, Iterator<Text> values, OutputCollector<Text, ArrayWriteable> output, Reporter reporter) throws IOException {
       int sum = 0;
 	  ArrayWritable postingList = new ArrayWritable(Text.class);
-	  ArrayList<Text> docs = new ArrayList<>();
+	  ArrayList<Text> docs = new ArrayList<Text>();
       while (values.hasNext()) {
         docs.add(values.next());
       }
