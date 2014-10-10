@@ -31,7 +31,7 @@ public class Indexer {
   }
 
   public static class Reduce extends MapReduceBase implements Reducer<Text, Text, Text, ArrayWriteable> {
-    public void reduce(Text key, Iterator<Text> values, OutputCollector<Text, ArrayWriteable> output, Reporter reporter) throws IOException {
+    public void reduce(Text key, Iterator<Text> values, OutputCollector<Text, ArrayWritable> output, Reporter reporter) throws IOException {
       int sum = 0;
 	  ArrayWritable postingList = new ArrayWritable(Text.class);
 	  ArrayList<Text> docs = new ArrayList<Text>();
@@ -44,11 +44,11 @@ public class Indexer {
   }
 
   public static void main(String[] args) throws Exception {
-    JobConf conf = new JobConf(WordCount.class);
+    JobConf conf = new JobConf(Indexer.class);
     conf.setJobName("indexer");
 
     conf.setOutputKeyClass(Text.class);
-    conf.setOutputValueClass(ArrayWriteable.class);
+    conf.setOutputValueClass(ArrayWritable.class);
 	conf.setMapOutputValueClass(Text.class);
 
     conf.setMapperClass(Map.class);
