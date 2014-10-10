@@ -1,6 +1,6 @@
 #!/bin/bash
 javac -cp /usr/lib/hadoop/*:/usr/lib/hadoop/client-0.20/* Indexer.java
-jar -cvf index.jar Indexer.class
+jar -cvf index.jar Indexer*.class
 
 hdfs dfs -rm -f -r /user/cloudera/index
 
