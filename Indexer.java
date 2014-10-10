@@ -35,10 +35,12 @@ public class Indexer {
 	  @Override
     public void reduce(Text key, Iterator<Text> values, OutputCollector<Text, Text> output, Reporter reporter) throws IOException {
 	  StringBuilder postingList = new StringBuilder();
+	  postingList.append("(");
       while (values.hasNext()) {
         postingList.append(values.next().get() + " ");
       }
-      output.collect(key, postingList);
+	  postingList.append(")");
+      output.collect(key, new Text(postingList.toString()));
     }
   }
 
