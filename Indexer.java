@@ -37,7 +37,7 @@ public class Indexer {
 	  StringBuilder postingList = new StringBuilder();
 	  postingList.append("(");
       while (values.hasNext()) {
-        postingList.append(values.next().get() + " ");
+        postingList.append(values.next().toString() + " ");
       }
 	  postingList.append(")");
       output.collect(key, new Text(postingList.toString()));
