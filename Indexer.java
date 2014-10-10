@@ -38,7 +38,7 @@ public class Indexer {
       while (values.hasNext()) {
         docs.add(values.next());
       }
-	  postingList.set(docs.toArray(new Text[docs.size]));
+	  postingList.set(docs.toArray(new Text[docs.size()]));
       output.collect(key, postingList);
     }
   }
