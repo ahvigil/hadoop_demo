@@ -30,7 +30,7 @@ public class Indexer {
     }
   }
 
-  public static class Reduce extends MapReduceBase implements Reducer<Text, Text, Text, ArrayWriteable> {
+  public static class Reduce extends MapReduceBase implements Reducer<Text, Text, Text, ArrayWritable> {
     public void reduce(Text key, Iterator<Text> values, OutputCollector<Text, ArrayWritable> output, Reporter reporter) throws IOException {
       int sum = 0;
 	  ArrayWritable postingList = new ArrayWritable(Text.class);
