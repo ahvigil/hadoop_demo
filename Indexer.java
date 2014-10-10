@@ -13,6 +13,7 @@ public class Indexer {
     private Text word = new Text();
 	private Text docid = new Text();
 
+	@Override
     public void map(LongWritable key, Text value, OutputCollector<Text, Text> output, Reporter reporter) throws IOException {
 	  FileSplit fileSplit = (FileSplit)reporter.getInputSplit();
       String fileName = fileSplit.getPath().getName();
@@ -31,8 +32,8 @@ public class Indexer {
   }
 
   public static class Reduce extends MapReduceBase implements Reducer<Text, Text, Text, ArrayWritable> {
+	  @Override
     public void reduce(Text key, Iterator<Text> values, OutputCollector<Text, ArrayWritable> output, Reporter reporter) throws IOException {
-      int sum = 0;
 	  ArrayWritable postingList = new ArrayWritable(Text.class);
 	  ArrayList<Text> docs = new ArrayList<Text>();
       while (values.hasNext()) {
@@ -52,7 +53,6 @@ public class Indexer {
 	conf.setMapOutputValueClass(Text.class);
 
     conf.setMapperClass(Map.class);
-    conf.setCombinerClass(Reduce.class);
     conf.setReducerClass(Reduce.class);
 
     conf.setInputFormat(TextInputFormat.class);
